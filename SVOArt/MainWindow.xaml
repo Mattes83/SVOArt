@@ -1,0 +1,25 @@
+﻿<Window x:Class="SVOArt.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:SVOArt"
+    xmlns:iav="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:svoArt="clr-namespace:SVOArt"
+    mc:Ignorable="d"
+    Title="SVOArt" Height="450" Width="800">
+    <iav:Interaction.Triggers>
+        <iav:EventTrigger EventName="Closing">
+            <iav:InvokeCommandAction Command="{Binding SaveCommand}"/>
+        </iav:EventTrigger>
+    </iav:Interaction.Triggers>
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Path=Sentences, Mode=OneWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:SVOControl Sentence="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>
